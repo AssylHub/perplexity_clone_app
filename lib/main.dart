@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perplexity_clone_app/screens/chat_page.dart';
 import 'package:perplexity_clone_app/screens/home_screen.dart';
 import 'package:perplexity_clone_app/theme/app_colors.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.submitButton),
       ),
-      home: HomeScreen(),
+      home: ChatPage(question: "What is Ind vs Aus score?",),
     );
   }
 }
