@@ -12,10 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String fullResponse = "";
 
   @override
   void initState() {
-    
     super.initState();
     ChatWebService().connect();
   }
@@ -32,6 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 // search section
                 Expanded(child: SearchSection()),
+
+                StreamBuilder(
+                  stream: ChatWebService().contentStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    fullResponse += snapshot.data?['data'] ?? "";
+
+                    return Text(fullResponse);
+                  },
+                ),
 
                 // footer
                 Container(
