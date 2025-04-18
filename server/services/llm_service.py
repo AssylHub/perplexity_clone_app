@@ -33,6 +33,7 @@ class LLMService:
         Please provide a comprehensive, detailed, well-cited accurate response using the above context. Think and reason deeply. Ensure it answers the query the user asking. Do not use your knowledge until it is absolutely necessary.
         """
 
-        response = self.model.generate_content(full_prompt)
+        response = self.model.generate_content(full_prompt, stream=True)
 
-        return response.text
+        for chunk in response:
+            yield chunk.text
