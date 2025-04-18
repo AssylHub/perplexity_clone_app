@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perplexity_clone_app/services/chat_web_service.dart';
 import 'package:perplexity_clone_app/theme/app_colors.dart';
 import 'package:perplexity_clone_app/widgets/search_section.dart';
 import 'package:perplexity_clone_app/widgets/side_bar.dart';
@@ -11,6 +12,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    
+    super.initState();
+    ChatWebService().connect();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

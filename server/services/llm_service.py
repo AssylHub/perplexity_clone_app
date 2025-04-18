@@ -19,7 +19,7 @@ class LLMService:
         # Query:
         context_text = "\n\n".join(
             [
-                f"Source {i+ 1} ({result["url"]}):\n{result["content"]}"
+                f"Source {i+ 1} ({result['url']}):\n{result["content"]}"
                 for i, result in enumerate(search_results)
             ]
         )
