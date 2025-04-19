@@ -1,6 +1,8 @@
 import 'dart:collection';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:perplexity_clone_app/widgets/answer_section.dart';
 import 'package:perplexity_clone_app/widgets/side_bar.dart';
 import 'package:perplexity_clone_app/widgets/sources_section.dart';
 
@@ -15,22 +17,35 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          SideBar(),
-          SizedBox(width: 100),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  question,
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700),
+          kIsWeb ? SideBar() : SizedBox(),
+          kIsWeb ? SizedBox(width: 100) : SizedBox(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      question,
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 24),
+                    SourcesSection(),
+                    SizedBox(height: 24),
+                    AnswerSection(),
+                  ],
                 ),
-                SizedBox(height: 24),
-                SourcesSection(),
-              ],
+              ),
             ),
           ),
+          kIsWeb
+              ? Placeholder(strokeWidth: 0, color: Colors.transparent)
+              : SizedBox(),
         ],
       ),
     );

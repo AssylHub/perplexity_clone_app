@@ -17,10 +17,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.background,
-        textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+        textTheme: GoogleFonts.interTextTheme(
+          ThemeData.dark().textTheme.copyWith(
+            bodyMedium: TextStyle(fontSize: 15, color: AppColors.whiteColor),
+          ),
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.submitButton),
       ),
-      home: ChatPage(question: "What is Ind vs Aus score?",),
+      home: HomeScreen(),
     );
   }
 }
